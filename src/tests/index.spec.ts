@@ -3,9 +3,9 @@ import supertest from 'supertest';
 
 const request = supertest(app);
 
-describe('Test endpoint responses', () => {
-	it('gets the birds endpoint', async () => {
-		const response = await request.get('/birds');
+describe('Testing Endpoint response', () => {
+	it('gets status code 200 on visit to "/"', async () => {
+		const response = await request.get('/');
 		expect(response.status).toBe(200);
 	});
 });

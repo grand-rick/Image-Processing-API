@@ -21,7 +21,7 @@ convert.get('/', async (req: Request, res: Response) => {
     const newWidth = parseInt(width);
     const newHeight = parseInt(height); 
     try {
-        const fileData = await sharp(inputFile).resize(newWidth, newHeight).toFile(outputFile);
+        await sharp(inputFile).resize(newWidth, newHeight).toFile(outputFile);
     } catch(err) {
         console.log(err);
     }
