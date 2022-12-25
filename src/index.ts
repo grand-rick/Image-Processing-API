@@ -1,21 +1,22 @@
-import express from 'express';
+import express, {Request, Response} from 'express';
 import morgan from 'morgan';
+import router from './routes/router';
+import dotenv from 'dotenv';
+
+dotenv.config();
 
 const app = express();
-const port = 3000;
+const port = process.env.port;
 
 app.use(morgan('common'));
+app.use(express.static('assets'));
 
-app.get('/', (req, res) => {
-	res.send('WELCOME! This is the homepage');
-});
+app.use('/', router);
 
-app.get('/birds', (req, res) => {
-	res.send('This is the birds page');
-});
+const rootDir = process.env.rootDir;
 
-app.get('/Fish', (req, res) => {
-	res.send('This is the Fishyyyyy page');
+app.get('/image', (req: Request, res: Response) => {
+    res.sendFile('assets/images/fjord.jpg', { root: rootDir });
 });
 
 app.listen(port, () => {
