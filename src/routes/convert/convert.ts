@@ -1,28 +1,31 @@
-import express, {Request, Response, NextFunction} from 'express';
+import express, {Request, Response} from 'express';
 import sharp from 'sharp';
+import dotenv from 'dotenv';
+
+dotenv.config();
 
 const convert = express.Router();
 
 const rootDir = process.env.rootDir;
 
-const progress = (req: Request, res: Response, next: NextFunction) => {
-    res.send('Conversion in progress');
-    next();
-}
+convert.get('/', async (req: Request, res: Response) => {
+    const inputFileName = (req.query.fileName as unknown) as string;
+    let width = (req.query.width as unknown) as string;
+    let height = (req.query.height as unknown) as string;
 
-convert.get('/', progress, async (req: Request, res: Response) => {
-    const inputFileName = req.query.fileName;
+    const outputFileName = `${inputFileName}_${width}_${height}`;
 
-    const inputFile = `${rootDir}/assets/images/${inputFileName}.jpg`
-    const width = req.query.width;
-    const height = req.query.height;
-    const outputFile = `${rootDir}/assets/images/${inputFile}_${width}_${height}.jpg`;
+    const inputFile = `${rootDir}/assets/images/${inputFileName}.jpg`;
+    const outputFile = `${rootDir}/assets/thumbs/${outputFileName}.jpg`;
+
+    const newWidth = parseInt(width);
+    const newHeight = parseInt(height); 
     try {
-        await sharp(inputFile).resize(300, 400).toFile(outputFile);
+        const fileData = await sharp(inputFile).resize(newWidth, newHeight).toFile(outputFile);
     } catch(err) {
         console.log(err);
     }
-    res.sendFile(`assets/images/${outputFile}`, { root: rootDir });
+    res.sendFile(`${outputFile}`);
 });
 
 export default convert;
