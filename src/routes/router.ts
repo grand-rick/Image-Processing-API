@@ -6,6 +6,6 @@ const router = express.Router();
 router.get('/', (req, res) => {
     res.send('Welcome, this is the homepage');
 })
-router.get('/convert', convert);
+router.use('/convert', convert);
 
 export default router;

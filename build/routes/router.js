@@ -9,5 +9,5 @@ var router = express_1.default.Router();
 router.get('/', function (req, res) {
     res.send('Welcome, this is the homepage');
 });
-router.get('/convert', convert_1.default);
+router.use('/convert', convert_1.default);
 exports.default = router;
