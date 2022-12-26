@@ -3,9 +3,14 @@ import supertest from 'supertest';
 
 const request = supertest(app);
 
-describe('Testing Endpoint response', () => {
-	it('gets status code 200 on visit to "/"', async () => {
-		const response = await request.get('/');
-		expect(response.status).toBe(200);
+describe('Testing main endpoint', () => {
+	it('gets status code 200 on visit to "/"', () => {
+		request.get('/')
+		.then(response => {
+			expect(response.status).toBe(200);
+		})
+		.catch(error => {
+			console.log(error);
+		})
 	});
 });
