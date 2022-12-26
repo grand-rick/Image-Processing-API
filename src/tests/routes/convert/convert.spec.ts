@@ -1,4 +1,5 @@
 import convert from '../../../routes/convert/convert';
+import fs from 'fs';
 import supertest from 'supertest';
 
 const request = supertest(convert);
@@ -28,4 +29,8 @@ describe('Testing the convert endpoint', () => {
 				console.log(error);
 			});
 	});
+	it('throws an error when an image doesn\'t exist', () => {
+		const inputFile = 'Nothing';
+		expect(fs.existsSync(inputFile)).not.toBe(true);
+	})
 });
