@@ -1,11 +1,16 @@
-// import router from '../../routes/router';
-// import supertest from 'supertest';
+import router from '../../routes/router';
+import supertest from 'supertest';
 
-// const request = supertest(router);
+const request = supertest(router);
 
-// describe('Testing routing', () => {
-// 	it('gets status code 200 on visit to "/"', async () => {
-// 		const response = await request.get('/');
-// 		expect(response.status).toBe(200);
-// 	});
-// });
+describe('Testing router endpoint', () => {
+	it('gets status code 400 on visit to "/fish"', async () => {
+		request.get('/')
+        .then(response => {
+            expect(response.status).toBe(404);
+        })
+        .catch(error => {
+            console.log(error);
+        })
+	});
+});
