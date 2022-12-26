@@ -39,24 +39,25 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-var express_1 = __importDefault(require("express"));
-var resize_1 = __importDefault(require("../utilities/resize"));
-var dotenv_1 = __importDefault(require("dotenv"));
-dotenv_1.default.config();
-var convert = express_1.default.Router();
-var rootDir = process.env.rootDir;
-convert.get('/', function (req, res) { return __awaiter(void 0, void 0, void 0, function () {
-    var inputFileName, width, height, outputFileName, inputFile, outputFile;
+var sharp_1 = __importDefault(require("sharp"));
+var resizeImage = function (inputFile, width, height, outputFile) { return __awaiter(void 0, void 0, void 0, function () {
+    var newWidth, newHeight, fileData, err_1;
     return __generator(this, function (_a) {
-        inputFileName = req.query.fileName;
-        width = req.query.width;
-        height = req.query.height;
-        outputFileName = "".concat(inputFileName, "_").concat(width, "_").concat(height);
-        inputFile = "".concat(rootDir, "/assets/images/").concat(inputFileName, ".jpg");
-        outputFile = "".concat(rootDir, "/assets/thumbs/").concat(outputFileName, ".jpg");
-        (0, resize_1.default)(inputFile, width, height, outputFile);
-        res.sendFile("".concat(outputFile));
-        return [2 /*return*/];
+        switch (_a.label) {
+            case 0:
+                _a.trys.push([0, 2, , 3]);
+                newWidth = parseInt(width);
+                newHeight = parseInt(height);
+                return [4 /*yield*/, (0, sharp_1.default)(inputFile).resize(newWidth, newHeight).toFile(outputFile)];
+            case 1:
+                fileData = _a.sent();
+                return [2 /*return*/, fileData];
+            case 2:
+                err_1 = _a.sent();
+                console.log(err_1);
+                return [3 /*break*/, 3];
+            case 3: return [2 /*return*/];
+        }
     });
-}); });
-exports.default = convert;
+}); };
+exports.default = resizeImage;

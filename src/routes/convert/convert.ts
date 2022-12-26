@@ -1,5 +1,5 @@
 import express, {Request, Response} from 'express';
-import sharp from 'sharp';
+import resizeImage from '../utilities/resize';
 import dotenv from 'dotenv';
 
 dotenv.config();
@@ -18,13 +18,8 @@ convert.get('/', async (req: Request, res: Response) => {
     const inputFile = `${rootDir}/assets/images/${inputFileName}.jpg`;
     const outputFile = `${rootDir}/assets/thumbs/${outputFileName}.jpg`;
 
-    const newWidth = parseInt(width);
-    const newHeight = parseInt(height); 
-    try {
-        await sharp(inputFile).resize(newWidth, newHeight).toFile(outputFile);
-    } catch(err) {
-        console.log(err);
-    }
+    resizeImage(inputFile, width, height, outputFile);
+
     res.sendFile(`${outputFile}`);
 });
 
