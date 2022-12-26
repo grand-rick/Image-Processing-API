@@ -48,7 +48,9 @@ var resizeImage = function (inputFile, width, height, outputFile) { return __awa
                 _a.trys.push([0, 2, , 3]);
                 newWidth = parseInt(width);
                 newHeight = parseInt(height);
-                return [4 /*yield*/, (0, sharp_1.default)(inputFile).resize(newWidth, newHeight).toFile(outputFile)];
+                return [4 /*yield*/, (0, sharp_1.default)(inputFile)
+                        .resize(newWidth, newHeight)
+                        .toFile(outputFile)];
             case 1:
                 fileData = _a.sent();
                 return [2 /*return*/, fileData];

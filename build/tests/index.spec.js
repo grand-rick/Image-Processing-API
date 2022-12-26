@@ -8,7 +8,8 @@ var supertest_1 = __importDefault(require("supertest"));
 var request = (0, supertest_1.default)(index_1.default);
 describe('Testing main endpoint', function () {
     it('gets status code 200 on visit to "/"', function () {
-        request.get('/')
+        request
+            .get('/')
             .then(function (response) {
             expect(response.status).toBe(200);
         })

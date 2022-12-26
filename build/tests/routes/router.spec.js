@@ -45,7 +45,8 @@ var request = (0, supertest_1.default)(router_1.default);
 describe('Testing router endpoint', function () {
     it('gets status code 400 on visit to "/fish"', function () { return __awaiter(void 0, void 0, void 0, function () {
         return __generator(this, function (_a) {
-            request.get('/')
+            request
+                .get('/')
                 .then(function (response) {
                 expect(response.status).toBe(404);
             })

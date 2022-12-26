@@ -41,21 +41,27 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 Object.defineProperty(exports, "__esModule", { value: true });
 var express_1 = __importDefault(require("express"));
 var resize_1 = __importDefault(require("../utilities/resize"));
+var fs_1 = __importDefault(require("fs"));
 var dotenv_1 = __importDefault(require("dotenv"));
 dotenv_1.default.config();
 var convert = express_1.default.Router();
 var rootDir = process.env.rootDir;
 convert.get('/', function (req, res) { return __awaiter(void 0, void 0, void 0, function () {
-    var inputFileName, width, height, outputFileName, inputFile, outputFile;
+    var inputFileName, width, height, inputFile, outputFileName, outputFile;
     return __generator(this, function (_a) {
         inputFileName = req.query.fileName;
         width = req.query.width;
         height = req.query.height;
-        outputFileName = "".concat(inputFileName, "_").concat(width, "_").concat(height);
         inputFile = "".concat(rootDir, "/assets/images/").concat(inputFileName, ".jpg");
+        outputFileName = "".concat(inputFileName, "_").concat(width, "_").concat(height);
         outputFile = "".concat(rootDir, "/assets/thumbs/").concat(outputFileName, ".jpg");
-        (0, resize_1.default)(inputFile, width, height, outputFile);
-        res.sendFile("".concat(outputFile));
+        if (fs_1.default.existsSync(inputFile)) {
+            (0, resize_1.default)(inputFile, width, height, outputFile);
+            res.sendFile("".concat(outputFile));
+        }
+        else {
+            res.send('Image does not exist');
+        }
         return [2 /*return*/];
     });
 }); });
