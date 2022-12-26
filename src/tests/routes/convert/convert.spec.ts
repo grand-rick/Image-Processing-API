@@ -1,15 +1,25 @@
-// import convert from '../../../routes/convert/convert';
-// import supertest from 'supertest';
+import convert from '../../../routes/convert/convert';
+import supertest from 'supertest';
 
-// const request = supertest(convert);
+const request = supertest(convert);
 
-// describe('Testing the conversion program', () => {
-// 	it('gets status code 200 on visit to "/"', async () => {
-// 		const response = await request.get('/');
-// 		expect(response.status).toBe(200);
-// 	});
-//     it('expects the program not to throw an error', async () => {
-// 		const response = await request.get('/');
-//         expect(response.status).toBe(200);
-//     });
-// });
+describe('Testing the convert endpoint', () => {
+	it('should handle the promise rejection', () => {
+        request.get('/')
+          .then(result => {
+            console.log(result);
+          })
+          .catch(error => {
+            expect(error).toEqual(new TypeError("Cannot read properties of undefined (reading 'fileName')"));
+          });
+    });
+    it('expects the convert endpoint to respond with status code 200', () => {
+        request.get('/?fileName=fjord&width=100&height=500')
+        .then(res => {
+            expect(res.status).toEqual(200)
+        })
+        .catch(error => {
+            console.log(error);
+        })
+    });
+});
