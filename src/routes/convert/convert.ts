@@ -2,7 +2,7 @@ import express, { Request, Response } from 'express';
 import resizeImage from '../utilities/resize';
 import fs from 'fs';
 import path from 'path';
-import {rootDir} from '../../index';
+import { rootDir } from '../../index';
 
 const convert = express.Router();
 

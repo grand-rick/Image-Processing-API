@@ -16,4 +16,4 @@ app.listen(port, () => {
 const rootDir = process.cwd();
 
 export default app;
-export {rootDir};
+export { rootDir };
