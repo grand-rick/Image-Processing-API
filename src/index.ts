@@ -1,12 +1,9 @@
 import express from 'express';
 import morgan from 'morgan';
 import router from './routes/router';
-import dotenv from 'dotenv';
-
-dotenv.config();
 
 const app = express();
-const port = process.env.port;
+const port = 3000;
 
 app.use(morgan('common'));
 
@@ -16,4 +13,7 @@ app.listen(port, () => {
 	console.log(`Server started at http://localhost:${port}`);
 });
 
+const rootDir = process.cwd();
+
 export default app;
+export {rootDir};

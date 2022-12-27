@@ -29,7 +29,7 @@ describe('Testing the convert endpoint', () => {
 				console.log(error);
 			});
 	});
-	it("throws an error when an image doesn't exist", () => {
+	it('throws an error when an image does not exist', () => {
 		const inputFile = 'Nothing';
 		expect(fs.existsSync(inputFile)).not.toBe(true);
 	});

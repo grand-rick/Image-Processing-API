@@ -42,10 +42,9 @@ Object.defineProperty(exports, "__esModule", { value: true });
 var express_1 = __importDefault(require("express"));
 var resize_1 = __importDefault(require("../utilities/resize"));
 var fs_1 = __importDefault(require("fs"));
-var dotenv_1 = __importDefault(require("dotenv"));
-dotenv_1.default.config();
+var path_1 = __importDefault(require("path"));
+var index_1 = require("../../index");
 var convert = express_1.default.Router();
-var rootDir = process.env.rootDir;
 convert.get('/', function (req, res) { return __awaiter(void 0, void 0, void 0, function () {
     var inputFileName, width, height, inputFile, outputFileName, outputFile;
     return __generator(this, function (_a) {
@@ -54,9 +53,9 @@ convert.get('/', function (req, res) { return __awaiter(void 0, void 0, void 0, 
                 inputFileName = req.query.fileName;
                 width = req.query.width;
                 height = req.query.height;
-                inputFile = "".concat(rootDir, "/assets/images/").concat(inputFileName, ".jpg");
+                inputFile = path_1.default.join(index_1.rootDir, 'assets', 'images', "".concat(inputFileName, ".jpg"));
                 outputFileName = "".concat(inputFileName, "_").concat(width, "_").concat(height);
-                outputFile = "".concat(rootDir, "/assets/thumbs/").concat(outputFileName, ".jpg");
+                outputFile = path_1.default.join(index_1.rootDir, 'assets', 'thumbs', "".concat(outputFileName, ".jpg"));
                 if (!fs_1.default.existsSync(inputFile)) return [3 /*break*/, 2];
                 return [4 /*yield*/, (0, resize_1.default)(inputFile, width, height, outputFile)];
             case 1:
