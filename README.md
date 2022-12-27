@@ -9,8 +9,8 @@ npm i
 
 Then check the `package.json` file for the **dependencies** and **devDependencies** used, and install them accordingly as follows.
 ```bash
-npm i express jasmine jasmine-spec-reporter morgan sharp supertest //for dependencies
-npm i --save-dev typescript ts-node prettier nodemon eslint-plugin-prettier eslint-config-prettier eslint @typescript-eslint/parser @typescript-eslint/eslint-plugin @types/supertest @types/sharp @types/node @types/morgan @types/jasmine @types/express  //for devDependencies
+npm i express jasmine jasmine-spec-reporter morgan sharp supertest
+npm i --save-dev typescript ts-node prettier nodemon eslint-plugin-prettier eslint-config-prettier eslint @typescript-eslint/parser @typescript-eslint/eslint-plugin @types/supertest @types/sharp @types/node @types/morgan @types/jasmine @types/express
 ```
 The `tsconfig.json`, `eslint.json` files are already configured for you.
 
