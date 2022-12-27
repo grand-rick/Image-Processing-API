@@ -2,9 +2,12 @@
 >## _Project one of my Udacity nanodegree_
 
 ## **1. Setup and configuration**
-To use this API, first check the `package.json` file for the **dependencies** and **devDependencies** used.
+To use this API, first run the command below to install `node_modules`
+```bash
+npm i
+```
 
-Then install them accordingly as follows.
+Then check the `package.json` file for the **dependencies** and **devDependencies** used, and install them accordingly as follows.
 ```bash
 npm i <module-name> //for dependencies
 npm i --save-dev <module-name> //for devDependencies
