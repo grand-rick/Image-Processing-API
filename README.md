@@ -14,13 +14,6 @@ npm i --save-dev <module-name> //for devDependencies
 ```
 The `tsconfig.json`, `eslint.json` files are already configured for you.
 
-Once installed, copy the `.env.example` to a new file that you'll create named `.env`
-```bash
-cp .env.example .env
-```
-
-In the `.env` file, let the `port` be 3000, or a suitable number of your choosing, and the `rootDir` to be the absolute path to the project folder.
-
 ## **2. Testing**
 Once you're done with that, run the predefined tests using the command below, to check if the API works.
 ```bash
