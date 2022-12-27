@@ -2,28 +2,25 @@
 >## _Project one of my Udacity nanodegree_
 
 ## **1. Setup and configuration**
-To use this API, first check the `package.json` file for the **dependencies** and **devDependencies** used.
+To use this API, first run the command below to install `node_modules`
+```bash
+npm i
+```
 
-Then install them accordingly as follows.
+Then check the `package.json` file for the **dependencies** and **devDependencies** used, and install them accordingly as follows.
 ```bash
 npm i <module-name> //for dependencies
 npm i --save-dev <module-name> //for devDependencies
 ```
-Configure the `tsconfig.json`, `eslint.json` files by running the following command respectively.
-```bash
-npx tsc --init
-```
-```bash
-npm init @eslint/config
-```
-Configure those files accordingly and proceed.
+The `tsconfig.json`, `eslint.json` files are already configured for you.
 
 Once installed, copy the `.env.example` to a new file that you'll create named `.env`
 ```bash
 cp .env.example .env
 ```
 
->Then configure the variables within to match your preferences
+In the `.env` file, let the `port` be 3000, or a suitable number of your choosing, and the `rootDir` to be the absolute path to the project folder.
+
 ## **2. Testing**
 Once you're done with that, run the predefined tests using the command below, to check if the API works.
 ```bash
