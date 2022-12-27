@@ -49,20 +49,25 @@ var rootDir = process.env.rootDir;
 convert.get('/', function (req, res) { return __awaiter(void 0, void 0, void 0, function () {
     var inputFileName, width, height, inputFile, outputFileName, outputFile;
     return __generator(this, function (_a) {
-        inputFileName = req.query.fileName;
-        width = req.query.width;
-        height = req.query.height;
-        inputFile = "".concat(rootDir, "/assets/images/").concat(inputFileName, ".jpg");
-        outputFileName = "".concat(inputFileName, "_").concat(width, "_").concat(height);
-        outputFile = "".concat(rootDir, "/assets/thumbs/").concat(outputFileName, ".jpg");
-        if (fs_1.default.existsSync(inputFile)) {
-            (0, resize_1.default)(inputFile, width, height, outputFile);
-            res.sendFile("".concat(outputFile));
+        switch (_a.label) {
+            case 0:
+                inputFileName = req.query.fileName;
+                width = req.query.width;
+                height = req.query.height;
+                inputFile = "".concat(rootDir, "/assets/images/").concat(inputFileName, ".jpg");
+                outputFileName = "".concat(inputFileName, "_").concat(width, "_").concat(height);
+                outputFile = "".concat(rootDir, "/assets/thumbs/").concat(outputFileName, ".jpg");
+                if (!fs_1.default.existsSync(inputFile)) return [3 /*break*/, 2];
+                return [4 /*yield*/, (0, resize_1.default)(inputFile, width, height, outputFile)];
+            case 1:
+                _a.sent();
+                res.sendFile("".concat(outputFile));
+                return [3 /*break*/, 3];
+            case 2:
+                res.send('Image does not exist');
+                _a.label = 3;
+            case 3: return [2 /*return*/];
         }
-        else {
-            res.send('Image does not exist');
-        }
-        return [2 /*return*/];
     });
 }); });
 exports.default = convert;
