@@ -13,7 +13,6 @@ npm i <module-name> //for dependencies
 npm i --save-dev <module-name> //for devDependencies
 ```
 The `tsconfig.json`, `eslint.json` files are already configured for you.
-```
 
 Once installed, copy the `.env.example` to a new file that you'll create named `.env`
 ```bash
