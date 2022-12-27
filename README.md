@@ -9,19 +9,15 @@ Then install them accordingly as follows.
 npm i <module-name> //for dependencies
 npm i --save-dev <module-name> //for devDependencies
 ```
-Configure the `tsconfig.json`, `eslint.json` files by running the following command respectively.
-```bash
-npx tsc --init
+The `tsconfig.json`, `eslint.json` files are already configured for you.
 ```
-```bash
-npm init @eslint/config
-```
-Configure those files accordingly and proceed.
 
 Once installed, copy the `.env.example` to a new file that you'll create named `.env`
 ```bash
 cp .env.example .env
 ```
+
+In the `.env` file, let the `port` be 3000, or a suitable number of your choosing, and the `rootDir` to be the absolute path to the project folder.
 
 >Then configure the variables within to match your preferences
 ## **2. Testing**
