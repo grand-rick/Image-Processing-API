@@ -37,7 +37,7 @@ Open your browser to that address, and you'll be greeted with a welcome message.
 Edit the URL, using the format below.
 
 
-> http://localhost:3000?/fileName=name_of_image_in_assets&width=sample_width&height=sample_height
+> http://localhost:3000/convert?fileName=name_of_image_in_assets&width=sample_width&height=sample_height
 
 ![Image Example](assets/images/url.jpg)
 
