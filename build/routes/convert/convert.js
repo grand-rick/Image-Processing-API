@@ -46,29 +46,34 @@ var path_1 = __importDefault(require("path"));
 var index_1 = require("../../index");
 var convert = express_1.default.Router();
 convert.get('/', function (req, res) { return __awaiter(void 0, void 0, void 0, function () {
-    var inputFileName, width, height, inputFile, outputFileName, outputFile;
+    var inputFileName, width, height, flag, inputFile, outputFileName, outputFile;
     return __generator(this, function (_a) {
         switch (_a.label) {
             case 0:
                 inputFileName = req.query.fileName;
                 width = req.query.width;
                 height = req.query.height;
+                flag = 1;
                 if (inputFileName.slice(-4) === '.jpg') {
                     inputFileName = inputFileName.slice(0, -4);
                 }
                 inputFile = path_1.default.join(index_1.rootDir, 'assets', 'images', "".concat(inputFileName, ".jpg"));
                 outputFileName = "".concat(inputFileName, "_").concat(width, "_").concat(height);
                 outputFile = path_1.default.join(index_1.rootDir, 'assets', 'thumbs', "".concat(outputFileName, ".jpg"));
-                if (!fs_1.default.existsSync(inputFile)) return [3 /*break*/, 2];
-                return [4 /*yield*/, (0, resize_1.default)(inputFile, width, height, outputFile)];
+                if (!!fs_1.default.existsSync(inputFile)) return [3 /*break*/, 1];
+                res.send('The image does not exist');
+                flag = 0;
+                return [3 /*break*/, 4];
             case 1:
+                if (!fs_1.default.existsSync(outputFile)) return [3 /*break*/, 2];
+                res.sendFile("".concat(outputFile));
+                return [3 /*break*/, 4];
+            case 2: return [4 /*yield*/, (0, resize_1.default)(inputFile, width, height, outputFile)];
+            case 3:
                 _a.sent();
                 res.sendFile("".concat(outputFile));
-                return [3 /*break*/, 3];
-            case 2:
-                res.send('Image does not exist');
-                _a.label = 3;
-            case 3: return [2 /*return*/];
+                _a.label = 4;
+            case 4: return [2 /*return*/];
         }
     });
 }); });
