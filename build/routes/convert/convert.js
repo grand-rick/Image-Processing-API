@@ -53,6 +53,9 @@ convert.get('/', function (req, res) { return __awaiter(void 0, void 0, void 0, 
                 inputFileName = req.query.fileName;
                 width = req.query.width;
                 height = req.query.height;
+                if (inputFileName.slice(-4) === '.jpg') {
+                    inputFileName = inputFileName.slice(0, -4);
+                }
                 inputFile = path_1.default.join(index_1.rootDir, 'assets', 'images', "".concat(inputFileName, ".jpg"));
                 outputFileName = "".concat(inputFileName, "_").concat(width, "_").concat(height);
                 outputFile = path_1.default.join(index_1.rootDir, 'assets', 'thumbs', "".concat(outputFileName, ".jpg"));
