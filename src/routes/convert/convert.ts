@@ -31,7 +31,6 @@ convert.get('/', async (req: Request, res: Response) => {
 
 	if (!fs.existsSync(inputFile)) {
 		res.send('The image does not exist');
-		flag = 0;
 	} else if (fs.existsSync(outputFile)) {
 		res.sendFile(`${outputFile}`);
 	} else {
