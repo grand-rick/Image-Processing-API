@@ -1,4 +1,4 @@
-import express, {Request, Response} from 'express';
+import express, { Request, Response } from 'express';
 import convert from './convert/convert';
 
 const router = express.Router();

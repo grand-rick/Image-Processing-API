@@ -10,12 +10,10 @@ convert.get('/', async (req: Request, res: Response) => {
 	let inputFileName = req.query.fileName as unknown as string;
 	const width = req.query.width as unknown as string;
 	const height = req.query.height as unknown as string;
-	let flag: number = 1;
-
 
 	if (inputFileName.slice(-4) === '.jpg') {
 		inputFileName = inputFileName.slice(0, -4);
-	} 
+	}
 
 	const inputFile = path.join(
 		rootDir,
